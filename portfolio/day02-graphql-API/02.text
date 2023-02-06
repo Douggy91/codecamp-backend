@@ -1,0 +1,31 @@
+1. mutation{createBoard(createBoardInput:{writer:"라이언", password: "pass123#", title: "춘식이는 프렌즈!" , contents:"춘식이 귀여워!!!"}){contents}}
+
+2. query{fetchBoard(boardId:"63e0a2dc7d035600293d9a8e"){title, contents}}
+
+3. mutation{ likeBoard(boardId:"63e0a2dc7d035600293d9a8e")}
+
+4. mutation{ dislikeBoard(boardId:"63e0a2dc7d035600293d9a8e")}
+
+5. query{fetchBoard(boardId:"63e0a2dc7d035600293d9a8e"){likeCount, dislikeCount}}
+
+6. query{fetchBoardsCount}
+
+7. mutation{ updateBoard(updateBoardInput:{title:"춘식이는 최고야"},password:"pass123#", boardId:"63e0a2dc7d035600293d9a8e"){updatedAt}}
+
+8. query{fetchBoards(endDate:"2023-02-01", search:"춘식이는 최고야"){writer, contents}}
+
+9. 
+    mutation{createBoardComment(createBoardCommentInput:{writer:"죠르디",contents:"월급날만 기다려요~죠르디~!!",rating:4.5},boardId:"63e0a2dc7d035600293d9a8e"){rating contents writer}}
+    mutation{createBoardComment(createBoardCommentInput:{writer:"네오",contents:"춘식이는 쪼만해",rating:3.5},boardId:"63e0a2dc7d035600293d9a8e"){rating contents writer}}
+    mutation{createBoardComment(createBoardCommentInput:{writer:"프로도",contents:"춘식 춘식 건!!!",rating:5.0},boardId:"63e0a2dc7d035600293d9a8e"){rating contents writer}}
+
+10. mutation{updateBoardComment(boardCommentId:"63e0a5df7d035600293d9a91", updateBoardCommentInput:{contents:"춘식이는 쌍남자!!"}){contents}}
+
+11. mutation{deleteBoardComment(boardCommentId:"63e0a5d77d035600293d9a90")}
+
+12. query{ fetchBoardComments(boardId:"63e0a2dc7d035600293d9a8e"){writer contents}}
+
+13. query{ fetchBoardsOfTheBest{writer contents likeCount}}
+
+14. mutation{ createUser(createUserInput:{name: "춘식", email: "chunsik@kakao.com",password:"pass123#"}){name _id}}
+

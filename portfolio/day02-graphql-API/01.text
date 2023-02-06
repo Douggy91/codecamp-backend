@@ -1,0 +1,91 @@
+1. query { fetchProfile(name:"철수") {
+  age}
+
+2. query { fetchProfile(name:"영희") {
+  school}
+}
+
+3. query { fetchBoard(number:3) {
+  createdAt
+  contents
+	}
+}
+
+4. mutation { createProfile(name:"김덕진", age:33, school:"인하대학교") {
+    message
+    }
+}
+
+5. mutation{ createBoard(writer:"김덕진",title:"라이언&춘식",contents:"라춘댄스") {
+    message
+    }
+}
+
+6. query{ fetchProfile(name:"김덕진") {
+    school
+    age
+    name
+    } 
+}
+
+7. query{ fetchBoard(number: 13578) {
+  contents
+  createdAt
+  writer
+	}
+}
+
+8. mutation { updateProfile(name:"김덕진",school:"도장초등학교", age:33){
+  number 
+  message
+	}
+}	
+
+9. mutation {updateBoard(writer:"김덕진", contents: "춘식이는 귀여워", title:"라이언이 말하길") {
+    message
+    }
+}
+
+10. mutation { createProfile(name:"강백호", age: 18, school: "북산고등학교") {number, message, _id}}
+
+11. mutation {deleteProfile(name: "강백호") {message}}
+
+12. mutation { createProduct(seller: "소백지향홍삼", 
+    createProductInput:{ name:"6년근홍삼액",detail:"6년근홍삼만 골라서 추출한 진한 액기스", price: 117900 }){
+    _id number message
+    }
+}
+
+13. mutation{ updateProduct(productId:"2feef894-22c5-4e6d-9fb8-5e6790d55703", 
+    updateProductInput:{price:118400}){
+    message
+    }
+}
+
+14. query{ fetchProduct(productId: "2feef894-22c5-4e6d-9fb8-5e6790d55703") {
+    price
+    }
+}
+
+15. mutation{ deleteProduct(productId: "2feef894-22c5-4e6d-9fb8-5e6790d55703") {
+    message
+    }
+}
+
+16. query{ fetchProduct(productId:"2feef894-22c5-4e6d-9fb8-5e6790d55703") {
+    price
+    }
+}
+
+17. query{ fetchBoards(page:2){createdAt, title
+    }
+}
+
+18. query{ fetchBoards(page: ){createdAt, title
+    }
+}
+
+19. query{fetchProfilesCount}
+
+20. query{fetchBoardsCount}
+
