@@ -1,29 +1,16 @@
 // 회원 목록 조회 API를 요청해주세요.
 const getUser = () => {
-  const endpoint = 'http://localhost:3000'
-  const query = `query {
-    userList {
-      email name personal phone prefer
-    }
-  }`
-  fetch(endpoint,{
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query })
-  })
-    .then(res=>res.json()) // .json() 메서드를 통해서 JSON응답을 JavaScript객체 리터럴로 구문 분석
-    .then((json) => { // 앞서 받은 결과를 json이라는 변수로 저장하여 사용 (json이 아닌 다른 이름을 사용해도 이상 무)
-      console.log(json.data)
-      dataArray = json.data.userList
-      for(i=0;i<dataArray.length;i++){
-        createUserDiv(dataArray[i])
+  axios
+    .get('http://localhost:3000/users',)
+    .then((res)=>{
+      for(i=0;i<res.data.length;i++){
+        createUserDiv(res.data[i])
       }
     })
-}    
   // 받은 데이터로 createUserDiv함수를 이용해
   // 목록 화면을 완성해주세요.
   // createUserDiv()
-
+}
 
 const createUserDiv = (data) => {
   const userTableItem = document.createElement('div')
