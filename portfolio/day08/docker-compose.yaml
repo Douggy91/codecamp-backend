@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  my-nodejs:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+       - ./index.js:/nodejs/index.js
+       - ./email.js:/nodejs/email.js 
+       - ./phone.js:/nodejs/phone.js 
+    ports:
+       - 3000:3000
+  mongo-backend:
+    image: mongo:5
+    ports:
+       - 27017:27017
