@@ -1,0 +1,12 @@
+{
+  "name": "webcrawler",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "mongoose": "^6.9.1",
+    "puppeteer": "^19.6.3"
+  }
+}

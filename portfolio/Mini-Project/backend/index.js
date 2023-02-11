@@ -11,18 +11,20 @@ app.use(cors('http://localhost:3000/','https://localhost:3000/'))
 
 app.post('/users', async (req,res)=>{
     const isAuthValid = await Tokens.findOne({phone:req.body.phone})
+    console.log(isAuthValid, req.body)
     if (isAuthValid.isAuth) {
-        const user = MongoDB_Users(req.body)
+        const user = await MongoDB_Users(req.body)
         user.save()
         const id = await Users.findOne({phone: req.body.phone})._id
-        res.send()
+        res.send(id)
     } else {
         res.send(console.error('에러!! 핸드폰 번호가 인증되지 않았습니다.',422))
     }
 })
 
 app.get('/users', async (req,res)=>{
-    const result = await Users.findOne(req.body)
+    const result = await Users.find()
+    console.log(result)
     res.send(result)
 })
 
