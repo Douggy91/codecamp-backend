@@ -1,0 +1,28 @@
+version: '3.7'
+services:
+  mynode-backend:
+    build: 
+      context: ./backend/
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    # networks:
+    #   - front-net
+    #   - back-net
+  my-mongodb:
+    image: mongo:5
+    ports:
+      - 37017:27017
+    # networks:
+    #   - back-net
+  # my-webserver:
+  #   build:
+  #     context: ./frontend/
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 8001:80
+  #   networks:
+  #     - back-net
+# networks:
+#   front-net: {}
+#   back-net: {}
