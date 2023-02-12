@@ -11,7 +11,7 @@ import { options } from './swagger/config.js'
 const app = express()
 
 app.use(express.json());
-app.use(cors('http://localhost:3000/','https://localhost:3000/')) 
+app.use(cors()) 
 app.use('/api-docs', express.json(), swaggerUi.serve, swaggerUi.setup(swaggerJSDoc(options)));
 app.post('/users', async (req,res)=>{
     const isAuthValid = await Tokens.findOne({phone:req.body.phone})
@@ -69,7 +69,8 @@ app.get('/starbucks', async (req,res)=>{
     res.send(result)
 })
 
-await mongoose.connect("mongodb://localhost:27017/myproject")
+// await mongoose.connect("mongodb://my-mongodb:27017/myproject") // compose를 통한 연결
+await mongoose.connect("mongodb://localhost:27017/myproject") // 로컬 연결
 
 app.listen(3000, ()=>{
     console.log('welcome in new server port 3000')

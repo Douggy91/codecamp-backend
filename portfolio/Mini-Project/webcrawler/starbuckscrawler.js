@@ -33,7 +33,8 @@ async function starbucksCrawling(url) {
     await browser.close()
     
 }
-await mongoose.connect('mongodb://localhost:27017/myproject')
+await mongoose.connect('mongodb://localhost:27017/myproject') // 로컬 연결
+// await mongoose.connect("mongodb://localhost:37017/myproject") // 컨테이너로 전송 시 연결
 starbucksCrawling("https://www.starbucks.co.kr/menu/drink_list.do")
 
 // #container > div.content > div.product_result_wrap.product_result_wrap01 > div > dl > dd:nth-child(2) > div.product_list > dl > dd:nth-child(${i*2}) > ul > li:nth-child(${j}) > dl > dt > a > img // 이미지
