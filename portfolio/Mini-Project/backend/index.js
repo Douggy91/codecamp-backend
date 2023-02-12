@@ -4,11 +4,15 @@ import { Users, MongoDB_Users } from './mongodb/userSchema.model.js'
 import { getToken, Tokens, MongoDB_Tokens, sendToToken} from './mongodb/tokenSchema.model.js'
 import { StarBucks } from './mongodb/starbucksSchema.model.js'
 import cors from 'cors'
+import swaggerUi from 'swagger-ui-express'
+import swaggerJSDoc from 'swagger-jsdoc'
+import { options } from './swagger/config.js'
 
 const app = express()
+
 app.use(express.json());
 app.use(cors('http://localhost:3000/','https://localhost:3000/')) 
-
+app.use('/api-docs', express.json(), swaggerUi.serve, swaggerUi.setup(swaggerJSDoc(options)));
 app.post('/users', async (req,res)=>{
     const isAuthValid = await Tokens.findOne({phone:req.body.phone})
     console.log(isAuthValid, req.body)
@@ -41,7 +45,7 @@ app.post('/tokens/phone', async (req,res)=>{
     }
     console.log(phone, token)
     // sendToToken(phone, token)
-    res.send("핸드폰으로 인증 문자가 전송되었습니다.")
+    res.send({message: "핸드폰으로 인증 문자가 전송되었습니다.", token: token})
 })
 
 app.patch('/tokens/phone', async (req,res)=>{
