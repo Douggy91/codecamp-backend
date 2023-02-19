@@ -1,0 +1,52 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Customer {
+  customer_id: String!
+  customer_name: String!
+  passwd: String!
+  phone_num: Int!
+  email: String!
+  address: String!
+  point: Int!
+}
+
+type Franchise {
+  franchise_id: String!
+  franchise_name: String!
+  root_store_id: Store!
+}
+
+type Store {
+  store_id: String!
+  store_name: String!
+  passwd: String!
+  franchise_id: Franchise!
+  phone_num: Int!
+  email: String!
+  address: String!
+}
+
+type Order {
+  order_id: String!
+  store_id: Store!
+  customer_id: Customer!
+  order_state: Boolean!
+}
+
+type Query {
+  fetchCustomer(customerId: String!): Customer!
+}
+
+type Mutation {
+  createCustomer(createCustomerInput: CreateCustomerInput!): Customer!
+}
+
+input CreateCustomerInput {
+  customer_name: String!
+  passwd: String!
+  phone_num: Int!
+  email: String!
+  address: String!
+}
