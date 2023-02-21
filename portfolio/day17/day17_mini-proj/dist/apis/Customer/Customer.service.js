@@ -25,9 +25,9 @@ let CustomerService = class CustomerService {
         const result = await this.customerRepository.save(Object.assign({}, createCustomerInput));
         return result;
     }
-    async findOne({ customerId }) {
+    async findOne({ customerName }) {
         const result = await this.customerRepository.findOne({
-            where: { customer_id: customerId },
+            where: { customer_name: customerName },
         });
         return result;
     }
@@ -40,6 +40,14 @@ let CustomerService = class CustomerService {
         });
         const newCustomer = Object.assign(Object.assign(Object.assign({}, mycustomer), { id: customerId }), updateCustomerInput);
         return await this.customerRepository.save(newCustomer);
+    }
+    async delete({ customerId }) {
+        const result = await this.customerRepository.softDelete({
+            customer_id: customerId,
+        });
+        return result.affected
+            ? { message: `${customerId}}님, 성공적으로 탈퇴하셨습니다.` }
+            : false;
     }
 };
 CustomerService = __decorate([

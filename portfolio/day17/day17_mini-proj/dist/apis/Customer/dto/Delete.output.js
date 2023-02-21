@@ -9,32 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateCustomerInput = void 0;
+exports.DeleteCustomer = void 0;
 const graphql_1 = require("@nestjs/graphql");
-let CreateCustomerInput = class CreateCustomerInput {
+let DeleteCustomer = class DeleteCustomer {
 };
 __decorate([
     (0, graphql_1.Field)(() => String),
     __metadata("design:type", String)
-], CreateCustomerInput.prototype, "customer_name", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String),
-    __metadata("design:type", String)
-], CreateCustomerInput.prototype, "passwd", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String),
-    __metadata("design:type", Number)
-], CreateCustomerInput.prototype, "phone_num", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String),
-    __metadata("design:type", String)
-], CreateCustomerInput.prototype, "email", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String),
-    __metadata("design:type", String)
-], CreateCustomerInput.prototype, "address", void 0);
-CreateCustomerInput = __decorate([
-    (0, graphql_1.InputType)()
-], CreateCustomerInput);
-exports.CreateCustomerInput = CreateCustomerInput;
-//# sourceMappingURL=CreateCustomer.input.js.map
+], DeleteCustomer.prototype, "message", void 0);
+DeleteCustomer = __decorate([
+    (0, graphql_1.ObjectType)()
+], DeleteCustomer);
+exports.DeleteCustomer = DeleteCustomer;
+//# sourceMappingURL=Delete.output.js.map

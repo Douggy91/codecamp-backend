@@ -31,8 +31,8 @@ __decorate([
 ], Customer.prototype, "passwd", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    (0, graphql_1.Field)(() => graphql_1.Int),
-    __metadata("design:type", Number)
+    (0, graphql_1.Field)(() => String),
+    __metadata("design:type", String)
 ], Customer.prototype, "phone_num", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
@@ -53,6 +53,10 @@ __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
 ], Customer.prototype, "createDate", void 0);
+__decorate([
+    (0, typeorm_1.DeleteDateColumn)(),
+    __metadata("design:type", Date)
+], Customer.prototype, "isDeleted", void 0);
 Customer = __decorate([
     (0, typeorm_1.Entity)(),
     (0, graphql_1.ObjectType)()

@@ -6,12 +6,17 @@ export declare class CustomerService {
     create({ createCustomerInput }: {
         createCustomerInput: any;
     }): Promise<any>;
-    findOne({ customerId }: {
-        customerId: any;
+    findOne({ customerName }: {
+        customerName: any;
     }): Promise<Customer>;
     findAll(): Promise<Customer[]>;
     update({ customerId, updateCustomerInput }: {
         customerId: any;
         updateCustomerInput: any;
     }): Promise<any>;
+    delete({ customerId }: {
+        customerId: any;
+    }): Promise<false | {
+        message: string;
+    }>;
 }

@@ -6,10 +6,14 @@ type Customer {
   customer_id: String!
   customer_name: String!
   passwd: String!
-  phone_num: Int!
+  phone_num: String!
   email: String!
   address: String!
   point: Int!
+}
+
+type DeleteCustomer {
+  message: String!
 }
 
 type Franchise {
@@ -36,17 +40,28 @@ type Order {
 }
 
 type Query {
-  fetchCustomer(customerId: String!): Customer!
+  fetchCustomer(customerName: String!): Customer!
+  fetchCustomerAll: [Customer!]!
 }
 
 type Mutation {
   createCustomer(createCustomerInput: CreateCustomerInput!): Customer!
+  updateCustomer(customerId: String!, updateCustomerInput: UpdateCustomerInput!): Customer!
+  deleteCustomer(customerId: String!): DeleteCustomer!
 }
 
 input CreateCustomerInput {
   customer_name: String!
   passwd: String!
-  phone_num: Int!
+  phone_num: String!
   email: String!
   address: String!
+}
+
+input UpdateCustomerInput {
+  customer_name: String
+  passwd: String
+  phone_num: String
+  email: String
+  address: String
 }

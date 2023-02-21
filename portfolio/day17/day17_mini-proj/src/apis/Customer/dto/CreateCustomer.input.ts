@@ -8,7 +8,7 @@ export class CreateCustomerInput {
   @Field(() => String)
   passwd: string;
 
-  @Field(() => Int)
+  @Field(() => String)
   phone_num: number;
 
   @Field(() => String)

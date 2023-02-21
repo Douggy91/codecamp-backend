@@ -2,6 +2,7 @@ import { Field, Int, ObjectType } from '@nestjs/graphql';
 import {
   Column,
   CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -22,8 +23,8 @@ export class Customer {
   passwd: string;
 
   @Column()
-  @Field(() => Int)
-  phone_num: number;
+  @Field(() => String)
+  phone_num: string;
 
   @Column()
   @Field(() => String)
@@ -39,4 +40,7 @@ export class Customer {
 
   @CreateDateColumn()
   createDate: Date;
+
+  @DeleteDateColumn()
+  isDeleted: Date;
 }
