@@ -1,7 +1,7 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
-export class DeleteCustomer {
+export class DeleteOutput {
   @Field(() => String)
   message: string;
 }

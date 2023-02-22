@@ -25,6 +25,10 @@ __decorate([
     (0, graphql_1.Field)(() => String),
     __metadata("design:type", String)
 ], Store_Category.prototype, "store_category_name", void 0);
+__decorate([
+    (0, typeorm_1.DeleteDateColumn)(),
+    __metadata("design:type", Date)
+], Store_Category.prototype, "isDelete", void 0);
 Store_Category = __decorate([
     (0, typeorm_1.Entity)(),
     (0, graphql_1.ObjectType)()

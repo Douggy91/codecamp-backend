@@ -13,6 +13,9 @@ const graphql_1 = require("@nestjs/graphql");
 const typeorm_1 = require("@nestjs/typeorm");
 require("dotenv/config");
 const Customer_module_1 = require("./apis/Customer/Customer.module");
+const Order_module_1 = require("./apis/Order/Order.module");
+const Store_Category_module_1 = require("./apis/Store_Category/Store_Category.module");
+const Store_Frachise_module_1 = require("./apis/Store_Franchise/Store_Frachise.module");
 const DBPASSWD = process.env.DBPASSWD;
 const DBUSER = process.env.DBUSER;
 const DBHOST = process.env.DBHOST;
@@ -23,6 +26,9 @@ AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             Customer_module_1.CustomerModule,
+            Order_module_1.OrderModule,
+            Store_Frachise_module_1.FranchiseModule,
+            Store_Category_module_1.Store_CategoryModule,
             graphql_1.GraphQLModule.forRoot({
                 driver: apollo_1.ApolloDriver,
                 autoSchemaFile: './src/commons/graphql/schema.gql',

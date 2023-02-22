@@ -39,6 +39,10 @@ export class Store {
   @Field(() => String)
   address: string;
 
+  @Column({ default: false })
+  @Field(() => Boolean)
+  isRootStore: boolean;
+
   @CreateDateColumn()
   enrolled_date: Date;
 }

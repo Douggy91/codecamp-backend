@@ -3,6 +3,7 @@ import { Store } from 'src/apis/Store/entities/Store.entity';
 import { Store_Category } from 'src/apis/Store_Category/entities/Store_Category.entity';
 import {
   Column,
+  DeleteDateColumn,
   Entity,
   JoinColumn,
   JoinTable,
@@ -29,8 +30,6 @@ export class Franchise {
   )
   store_category_id: Store_Category[];
 
-  @JoinColumn()
-  @OneToOne(() => Store)
-  @Field(() => Store)
-  root_store_id: Store;
+  @DeleteDateColumn()
+  isDelete: Date;
 }

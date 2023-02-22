@@ -51,6 +51,11 @@ __decorate([
     __metadata("design:type", String)
 ], Store.prototype, "address", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ default: false }),
+    (0, graphql_1.Field)(() => Boolean),
+    __metadata("design:type", Boolean)
+], Store.prototype, "isRootStore", void 0);
+__decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
 ], Store.prototype, "enrolled_date", void 0);

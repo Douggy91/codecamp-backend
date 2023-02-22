@@ -7,5 +7,6 @@ export declare class Store {
     phone_num: number;
     email: string;
     address: string;
+    isRootStore: boolean;
     enrolled_date: Date;
 }

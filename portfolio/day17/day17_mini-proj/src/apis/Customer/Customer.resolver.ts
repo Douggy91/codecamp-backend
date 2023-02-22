@@ -1,7 +1,7 @@
 import { Query, Args, Mutation, Resolver } from '@nestjs/graphql';
 import { CustomerService } from './Customer.service';
 import { CreateCustomerInput } from './dto/CreateCustomer.input';
-import { DeleteCustomer } from './dto/Delete.output';
+import { DeleteOutput } from '../../commons/deleteMessage/Delete.output';
 import { UpdateCustomerInput } from './dto/UpdateCustomer.input';
 import { Customer } from './entities/Customer.entity';
 
@@ -24,7 +24,7 @@ export class CustomerResolver {
     return this.customerService.update({ customerId, updateCustomerInput });
   }
 
-  @Mutation(() => DeleteCustomer || Boolean)
+  @Mutation(() => DeleteOutput || Boolean)
   async deleteCustomer(@Args('customerId') customerId: string) {
     return this.customerService.delete({ customerId });
   }

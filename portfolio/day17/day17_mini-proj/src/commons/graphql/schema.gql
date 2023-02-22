@@ -12,14 +12,17 @@ type Customer {
   point: Int!
 }
 
-type DeleteCustomer {
+type DeleteOutput {
   message: String!
+}
+
+type Store_Category {
+  store_category_name: String!
 }
 
 type Franchise {
   franchise_id: String!
   franchise_name: String!
-  root_store_id: Store!
 }
 
 type Store {
@@ -30,6 +33,7 @@ type Store {
   phone_num: Int!
   email: String!
   address: String!
+  isRootStore: Boolean!
 }
 
 type Order {
@@ -42,12 +46,25 @@ type Order {
 type Query {
   fetchCustomer(customerName: String!): Customer!
   fetchCustomerAll: [Customer!]!
+  fetchOrders: Order!
+  fetchOrder(orderId: String!): Order!
+  fetchCategory(franchiseId: String!): Franchise!
+  fetchCategoryAll: Franchise!
+  fetch_category(storecategoryId: String!): Store_Category!
+  fetch_categoryAll: Store_Category!
 }
 
 type Mutation {
   createCustomer(createCustomerInput: CreateCustomerInput!): Customer!
   updateCustomer(customerId: String!, updateCustomerInput: UpdateCustomerInput!): Customer!
-  deleteCustomer(customerId: String!): DeleteCustomer!
+  deleteCustomer(customerId: String!): DeleteOutput!
+  createOrder(createOrderInput: CreateOrderInput!): Order!
+  createFranchise(createfranchiseInput: CreateFranchiseInput!): Franchise!
+  modifyCategory(franchiseId: String!, updatefranchiseInput: UpdateFranchiseInput!): Franchise!
+  deleteCategory(franchiseId: String!): DeleteOutput!
+  create_category(storecategoryName: String!): Store_Category!
+  modify_category(storecategoryId: String!, storecategoryName: String!): Store_Category!
+  delete_category(storecategoryName: String!): DeleteOutput!
 }
 
 input CreateCustomerInput {
@@ -64,4 +81,19 @@ input UpdateCustomerInput {
   phone_num: String
   email: String
   address: String
+}
+
+input CreateOrderInput {
+  customer_id: String!
+  store_id: String!
+}
+
+input CreateFranchiseInput {
+  franchise_name: String!
+  store_category_id: [String!]!
+}
+
+input UpdateFranchiseInput {
+  franchise_name: String
+  store_category_id: [String!]
 }

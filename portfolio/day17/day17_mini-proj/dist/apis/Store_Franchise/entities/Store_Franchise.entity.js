@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Franchise = void 0;
 const graphql_1 = require("@nestjs/graphql");
-const Store_entity_1 = require("../../Store/entities/Store.entity");
 const Store_Category_entity_1 = require("../../Store_Category/entities/Store_Category.entity");
 const typeorm_1 = require("typeorm");
 let Franchise = class Franchise {
@@ -32,11 +31,9 @@ __decorate([
     __metadata("design:type", Array)
 ], Franchise.prototype, "store_category_id", void 0);
 __decorate([
-    (0, typeorm_1.JoinColumn)(),
-    (0, typeorm_1.OneToOne)(() => Store_entity_1.Store),
-    (0, graphql_1.Field)(() => Store_entity_1.Store),
-    __metadata("design:type", Store_entity_1.Store)
-], Franchise.prototype, "root_store_id", void 0);
+    (0, typeorm_1.DeleteDateColumn)(),
+    __metadata("design:type", Date)
+], Franchise.prototype, "isDelete", void 0);
 Franchise = __decorate([
     (0, typeorm_1.Entity)(),
     (0, graphql_1.ObjectType)()

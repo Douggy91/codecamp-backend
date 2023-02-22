@@ -16,7 +16,7 @@ exports.CustomerResolver = void 0;
 const graphql_1 = require("@nestjs/graphql");
 const Customer_service_1 = require("./Customer.service");
 const CreateCustomer_input_1 = require("./dto/CreateCustomer.input");
-const Delete_output_1 = require("./dto/Delete.output");
+const Delete_output_1 = require("../../commons/deleteMessage/Delete.output");
 const UpdateCustomer_input_1 = require("./dto/UpdateCustomer.input");
 const Customer_entity_1 = require("./entities/Customer.entity");
 let CustomerResolver = class CustomerResolver {
@@ -55,7 +55,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CustomerResolver.prototype, "updateCustomer", null);
 __decorate([
-    (0, graphql_1.Mutation)(() => Delete_output_1.DeleteCustomer || Boolean),
+    (0, graphql_1.Mutation)(() => Delete_output_1.DeleteOutput || Boolean),
     __param(0, (0, graphql_1.Args)('customerId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
