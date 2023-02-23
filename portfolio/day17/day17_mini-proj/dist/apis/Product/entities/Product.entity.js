@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Product = void 0;
 const graphql_1 = require("@nestjs/graphql");
-const Order_Product_entity_1 = require("../../Order_Product/entities/Order_Product.entity");
 const Product_Category_entity_1 = require("../../Product_Category/entities/Product_Category.entity");
 const Store_entity_1 = require("../../Store/entities/Store.entity");
 const typeorm_1 = require("typeorm");
@@ -19,32 +18,31 @@ let Product = class Product {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
-    (0, typeorm_1.JoinTable)(),
-    (0, typeorm_1.ManyToMany)(() => Order_Product_entity_1.Order_Product, (order_product) => order_product.product_id),
-    __metadata("design:type", Array)
+    (0, graphql_1.Field)(() => String),
+    __metadata("design:type", String)
 ], Product.prototype, "product_id", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    (0, graphql_1.Field)(() => String),
+    __metadata("design:type", String)
+], Product.prototype, "product_name", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => Store_entity_1.Store),
     (0, graphql_1.Field)(() => Store_entity_1.Store),
     __metadata("design:type", Store_entity_1.Store)
 ], Product.prototype, "store_id", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    (0, graphql_1.Field)(() => String),
-    __metadata("design:type", String)
-], Product.prototype, "store_name", void 0);
-__decorate([
     (0, typeorm_1.JoinTable)(),
     (0, typeorm_1.ManyToMany)(() => Product_Category_entity_1.Product_Category, (product_category) => product_category.product_category_id),
     __metadata("design:type", Array)
-], Product.prototype, "category_id", void 0);
+], Product.prototype, "product_category_id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     (0, graphql_1.Field)(() => graphql_1.Int),
     __metadata("design:type", Number)
 ], Product.prototype, "price", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ default: true }),
     (0, graphql_1.Field)(() => Boolean),
     __metadata("design:type", Boolean)
 ], Product.prototype, "isState", void 0);

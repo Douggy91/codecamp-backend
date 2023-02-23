@@ -6,7 +6,7 @@ export declare class StoreCategoryService {
     create({ storecategoryName }: {
         storecategoryName: any;
     }): Promise<{
-        store_category_name: any;
+        storecategory_name: any;
     } & Store_Category>;
     findOne({ storecategoryId }: {
         storecategoryId: any;
@@ -16,11 +16,11 @@ export declare class StoreCategoryService {
         storecategoryId: any;
         storecategoryName: any;
     }): Promise<{
-        store_category_id: any;
-        store_category_name: any;
+        storecategory_id: any;
+        storecategory_name: any;
     } & Store_Category>;
-    delete({ storecategoryName }: {
-        storecategoryName: any;
+    delete({ storecategoryId }: {
+        storecategoryId: any;
     }): Promise<false | {
         message: string;
     }>;

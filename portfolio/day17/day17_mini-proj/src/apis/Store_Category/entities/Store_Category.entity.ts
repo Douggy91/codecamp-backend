@@ -12,12 +12,12 @@ import {
 @ObjectType()
 export class Store_Category {
   @PrimaryGeneratedColumn('uuid')
-  @ManyToMany(() => Franchise, (franchise) => franchise.store_category_id)
-  store_category_id: Franchise[];
+  @ManyToMany(() => Franchise, (franchise) => franchise.storecategory_id)
+  storecategory_id: Franchise[];
 
   @Column()
   @Field(() => String)
-  store_category_name: string;
+  storecategory_name: string;
 
   @DeleteDateColumn()
   isDelete: Date;

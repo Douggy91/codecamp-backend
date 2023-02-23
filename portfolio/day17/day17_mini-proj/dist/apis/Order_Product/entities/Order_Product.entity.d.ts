@@ -3,6 +3,6 @@ import { Product } from 'src/apis/Product/entities/Product.entity';
 export declare class Order_Product {
     no: number;
     order_id: Order;
-    product_id: Product[];
+    product_id: Product;
     order_cnt: number;
 }

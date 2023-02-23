@@ -1,14 +1,11 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Store } from 'src/apis/Store/entities/Store.entity';
 import { Store_Category } from 'src/apis/Store_Category/entities/Store_Category.entity';
 import {
   Column,
   DeleteDateColumn,
   Entity,
-  JoinColumn,
   JoinTable,
   ManyToMany,
-  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -26,9 +23,9 @@ export class Franchise {
   @JoinTable()
   @ManyToMany(
     () => Store_Category,
-    (store_category) => store_category.store_category_id,
+    (storecategory) => storecategory.storecategory_id,
   )
-  store_category_id: Store_Category[];
+  storecategory_id: Store_Category[];
 
   @DeleteDateColumn()
   isDelete: Date;

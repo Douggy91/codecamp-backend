@@ -11,34 +11,37 @@ export class StoreCategoryService {
   ) {}
   async create({ storecategoryName }) {
     const result = await this.storecategoryRepository.save({
-      store_category_name: storecategoryName,
+      storecategory_name: storecategoryName,
     });
     return result;
   }
 
   async findOne({ storecategoryId }) {
     const result = await this.storecategoryRepository.findOne({
-      where: { store_category_id: storecategoryId },
+      where: { storecategory_id: storecategoryId },
+      relations: ['storecategory_id'],
     });
     return result;
   }
 
   async findAll() {
-    return this.storecategoryRepository.find();
+    return this.storecategoryRepository.find({
+      relations: ['storecategory_id'],
+    });
   }
 
   async modify({ storecategoryId, storecategoryName }) {
     return await this.storecategoryRepository.save({
-      store_category_id: storecategoryId,
-      store_category_name: storecategoryName,
+      storecategory_id: storecategoryId,
+      storecategory_name: storecategoryName,
     });
   }
-  async delete({ storecategoryName }) {
+  async delete({ storecategoryId }) {
     const result = await this.storecategoryRepository.softDelete({
-      store_category_name: storecategoryName,
+      storecategory_name: storecategoryId,
     });
     return result.affected
-      ? { message: `카테고리 : ${storecategoryName} 삭제 ` }
+      ? { message: `카테고리 : ${storecategoryId} 삭제 ` }
       : false;
   }
 }

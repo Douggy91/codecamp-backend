@@ -16,13 +16,34 @@ exports.FranchiseService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
+const Store_Category_entity_1 = require("../Store_Category/entities/Store_Category.entity");
 const Store_Franchise_entity_1 = require("./entities/Store_Franchise.entity");
 let FranchiseService = class FranchiseService {
-    constructor(franchiseRepository) {
+    constructor(franchiseRepository, storecategoryRepository) {
         this.franchiseRepository = franchiseRepository;
+        this.storecategoryRepository = storecategoryRepository;
     }
     async create({ createfranchiseInput }) {
-        const result_comp = await this.franchiseRepository.save(Object.assign({}, createfranchiseInput));
+        const { storecategory_name, franchise_name } = createfranchiseInput;
+        const categorys = [];
+        for (let i = 0; i < storecategory_name.length; i++) {
+            const pre_regist = await this.storecategoryRepository.findOne({
+                where: { storecategory_name: storecategory_name[i] },
+            });
+            if (pre_regist) {
+                categorys.push(storecategory_name[i]);
+            }
+            else {
+                await this.storecategoryRepository.save({
+                    storecategory_name: storecategory_name[i],
+                });
+                categorys.push(storecategory_name[i]);
+            }
+        }
+        const result_comp = await this.franchiseRepository.save({
+            store_category_name: categorys,
+            franchise_name: franchise_name,
+        });
         return result_comp;
     }
     async modify({ franchiseId, updatefranchiseInput }) {
@@ -43,19 +64,21 @@ let FranchiseService = class FranchiseService {
     async findOne({ franchiseId }) {
         return await this.franchiseRepository.findOne({
             where: { franchise_id: franchiseId },
-            relations: ['store_category_id', 'root_store_id'],
+            relations: ['storecategory_id'],
         });
     }
     async findAll() {
         return await this.franchiseRepository.find({
-            relations: ['store_category_id', 'root_store_id'],
+            relations: ['storecategory_id'],
         });
     }
 };
 FranchiseService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(Store_Franchise_entity_1.Franchise)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __param(1, (0, typeorm_1.InjectRepository)(Store_Category_entity_1.Store_Category)),
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository])
 ], FranchiseService);
 exports.FranchiseService = FranchiseService;
 //# sourceMappingURL=Store_Franchise.service.js.map

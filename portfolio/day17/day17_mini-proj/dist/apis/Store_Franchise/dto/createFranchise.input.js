@@ -20,7 +20,7 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => [String]),
     __metadata("design:type", Array)
-], CreateFranchiseInput.prototype, "store_category_id", void 0);
+], CreateFranchiseInput.prototype, "storecategory_name", void 0);
 CreateFranchiseInput = __decorate([
     (0, graphql_1.InputType)()
 ], CreateFranchiseInput);

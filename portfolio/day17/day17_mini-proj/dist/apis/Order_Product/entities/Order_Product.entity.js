@@ -27,8 +27,9 @@ __decorate([
     __metadata("design:type", Order_entity_1.Order)
 ], Order_Product.prototype, "order_id", void 0);
 __decorate([
-    (0, typeorm_1.ManyToMany)(() => Product_entity_1.Product, (product) => product.product_id),
-    __metadata("design:type", Array)
+    (0, typeorm_1.ManyToOne)(() => Product_entity_1.Product),
+    (0, graphql_1.Field)(() => Product_entity_1.Product),
+    __metadata("design:type", Product_entity_1.Product)
 ], Order_Product.prototype, "product_id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),

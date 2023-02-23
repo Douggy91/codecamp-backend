@@ -7,23 +7,13 @@ import { StoreCategoryService } from './Store_Category.service';
 export class StoreCategoryResolver {
   constructor(private readonly storecategoryService: StoreCategoryService) {}
 
-  @Query(() => Store_Category)
-  fetch_category(@Args('storecategoryId') storecategoryId: string) {
-    return this.storecategoryService.findOne({ storecategoryId });
-  }
-
-  @Query(() => Store_Category)
-  fetch_categoryAll() {
-    return this.storecategoryService.findAll();
-  }
-
   @Mutation(() => Store_Category)
-  create_category(@Args('storecategoryName') storecategoryName: string) {
+  createStorecategory(@Args('storecategoryName') storecategoryName: string) {
     return this.storecategoryService.create({ storecategoryName });
   }
 
   @Mutation(() => Store_Category)
-  modify_category(
+  modifyStorecategory(
     @Args('storecategoryId') storecategoryId: string,
     @Args('storecategoryName') storecategoryName: string,
   ) {
@@ -33,7 +23,17 @@ export class StoreCategoryResolver {
     });
   }
   @Mutation(() => DeleteOutput || Boolean)
-  delete_category(@Args('storecategoryName') storecategoryName: string) {
-    return this.storecategoryService.delete({ storecategoryName });
+  deleteStorecategory(@Args('storecategoryId') storecategoryId: string) {
+    return this.storecategoryService.delete({ storecategoryId });
+  }
+
+  @Query(() => Store_Category)
+  fetchStorecategory(@Args('storecategoryId') storecategoryId: string) {
+    return this.storecategoryService.findOne({ storecategoryId });
+  }
+
+  @Query(() => Store_Category)
+  fetchStorecategoryAll() {
+    return this.storecategoryService.findAll();
   }
 }

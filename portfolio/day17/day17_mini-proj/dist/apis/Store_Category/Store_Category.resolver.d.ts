@@ -3,16 +3,16 @@ import { StoreCategoryService } from './Store_Category.service';
 export declare class StoreCategoryResolver {
     private readonly storecategoryService;
     constructor(storecategoryService: StoreCategoryService);
-    fetch_category(storecategoryId: string): Promise<Store_Category>;
-    fetch_categoryAll(): Promise<Store_Category[]>;
-    create_category(storecategoryName: string): Promise<{
-        store_category_name: any;
+    createStorecategory(storecategoryName: string): Promise<{
+        storecategory_name: any;
     } & Store_Category>;
-    modify_category(storecategoryId: string, storecategoryName: string): Promise<{
-        store_category_id: any;
-        store_category_name: any;
+    modifyStorecategory(storecategoryId: string, storecategoryName: string): Promise<{
+        storecategory_id: any;
+        storecategory_name: any;
     } & Store_Category>;
-    delete_category(storecategoryName: string): Promise<false | {
+    deleteStorecategory(storecategoryId: string): Promise<false | {
         message: string;
     }>;
+    fetchStorecategory(storecategoryId: string): Promise<Store_Category>;
+    fetchStorecategoryAll(): Promise<Store_Category[]>;
 }

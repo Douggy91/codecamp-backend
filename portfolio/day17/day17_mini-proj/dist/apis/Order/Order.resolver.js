@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrderResolver = void 0;
 const graphql_1 = require("@nestjs/graphql");
+const Delete_output_1 = require("../../commons/deleteMessage/Delete.output");
 const CreateOrder_input_1 = require("./dto/CreateOrder.input");
 const Order_entity_1 = require("./entities/Order.entity");
 const Order_service_1 = require("./Order.service");
@@ -32,7 +33,7 @@ let OrderResolver = class OrderResolver {
     }
 };
 __decorate([
-    (0, graphql_1.Mutation)(() => Order_entity_1.Order),
+    (0, graphql_1.Mutation)(() => Order_entity_1.Order || Delete_output_1.DeleteOutput),
     __param(0, (0, graphql_1.Args)('createOrderInput')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [CreateOrder_input_1.CreateOrderInput]),

@@ -37,8 +37,8 @@ __decorate([
 ], Store.prototype, "franchise_id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    (0, graphql_1.Field)(() => graphql_1.Int),
-    __metadata("design:type", Number)
+    (0, graphql_1.Field)(() => String),
+    __metadata("design:type", String)
 ], Store.prototype, "phone_num", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
@@ -59,6 +59,10 @@ __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
 ], Store.prototype, "enrolled_date", void 0);
+__decorate([
+    (0, typeorm_1.DeleteDateColumn)(),
+    __metadata("design:type", Date)
+], Store.prototype, "isDeleted", void 0);
 Store = __decorate([
     (0, typeorm_1.Entity)(),
     (0, graphql_1.ObjectType)()

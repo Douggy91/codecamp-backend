@@ -17,7 +17,7 @@ let Product_Category = class Product_Category {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
-    (0, typeorm_1.ManyToMany)(() => Product_entity_1.Product, (product) => product.category_id),
+    (0, typeorm_1.ManyToMany)(() => Product_entity_1.Product, (product) => product.product_category_id),
     __metadata("design:type", Array)
 ], Product_Category.prototype, "product_category_id", void 0);
 __decorate([

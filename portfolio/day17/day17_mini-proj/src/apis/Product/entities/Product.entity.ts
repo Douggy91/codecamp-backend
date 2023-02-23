@@ -16,30 +16,29 @@ import {
 @ObjectType()
 export class Product {
   @PrimaryGeneratedColumn('uuid')
-  @JoinTable()
-  @ManyToMany(() => Order_Product, (order_product) => order_product.product_id)
-  product_id: Order_Product[];
+  @Field(() => String)
+  product_id: string;
+
+  @Column()
+  @Field(() => String)
+  product_name: string;
 
   @ManyToOne(() => Store)
   @Field(() => Store)
   store_id: Store;
-
-  @Column()
-  @Field(() => String)
-  store_name: string;
 
   @JoinTable()
   @ManyToMany(
     () => Product_Category,
     (product_category) => product_category.product_category_id,
   )
-  category_id: Product_Category[];
+  product_category_id: Product_Category[];
 
   @Column()
   @Field(() => Int)
   price: number;
 
-  @Column()
+  @Column({ default: true })
   @Field(() => Boolean)
   isState: boolean;
 

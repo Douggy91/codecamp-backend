@@ -17,14 +17,14 @@ let Store_Category = class Store_Category {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
-    (0, typeorm_1.ManyToMany)(() => Store_Franchise_entity_1.Franchise, (franchise) => franchise.store_category_id),
+    (0, typeorm_1.ManyToMany)(() => Store_Franchise_entity_1.Franchise, (franchise) => franchise.storecategory_id),
     __metadata("design:type", Array)
-], Store_Category.prototype, "store_category_id", void 0);
+], Store_Category.prototype, "storecategory_id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     (0, graphql_1.Field)(() => String),
     __metadata("design:type", String)
-], Store_Category.prototype, "store_category_name", void 0);
+], Store_Category.prototype, "storecategory_name", void 0);
 __decorate([
     (0, typeorm_1.DeleteDateColumn)(),
     __metadata("design:type", Date)

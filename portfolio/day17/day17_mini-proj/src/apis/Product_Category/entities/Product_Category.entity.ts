@@ -6,8 +6,7 @@ import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 @ObjectType()
 export class Product_Category {
   @PrimaryGeneratedColumn('uuid')
-  // @Field(() => String)
-  @ManyToMany(() => Product, (product) => product.category_id)
+  @ManyToMany(() => Product, (product) => product.product_category_id)
   product_category_id: Product[];
 
   @Column()

@@ -21,45 +21,32 @@ let StoreCategoryResolver = class StoreCategoryResolver {
     constructor(storecategoryService) {
         this.storecategoryService = storecategoryService;
     }
-    fetch_category(storecategoryId) {
-        return this.storecategoryService.findOne({ storecategoryId });
-    }
-    fetch_categoryAll() {
-        return this.storecategoryService.findAll();
-    }
-    create_category(storecategoryName) {
+    createStorecategory(storecategoryName) {
         return this.storecategoryService.create({ storecategoryName });
     }
-    modify_category(storecategoryId, storecategoryName) {
+    modifyStorecategory(storecategoryId, storecategoryName) {
         return this.storecategoryService.modify({
             storecategoryId,
             storecategoryName,
         });
     }
-    delete_category(storecategoryName) {
-        return this.storecategoryService.delete({ storecategoryName });
+    deleteStorecategory(storecategoryId) {
+        return this.storecategoryService.delete({ storecategoryId });
+    }
+    fetchStorecategory(storecategoryId) {
+        return this.storecategoryService.findOne({ storecategoryId });
+    }
+    fetchStorecategoryAll() {
+        return this.storecategoryService.findAll();
     }
 };
-__decorate([
-    (0, graphql_1.Query)(() => Store_Category_entity_1.Store_Category),
-    __param(0, (0, graphql_1.Args)('storecategoryId')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], StoreCategoryResolver.prototype, "fetch_category", null);
-__decorate([
-    (0, graphql_1.Query)(() => Store_Category_entity_1.Store_Category),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], StoreCategoryResolver.prototype, "fetch_categoryAll", null);
 __decorate([
     (0, graphql_1.Mutation)(() => Store_Category_entity_1.Store_Category),
     __param(0, (0, graphql_1.Args)('storecategoryName')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], StoreCategoryResolver.prototype, "create_category", null);
+], StoreCategoryResolver.prototype, "createStorecategory", null);
 __decorate([
     (0, graphql_1.Mutation)(() => Store_Category_entity_1.Store_Category),
     __param(0, (0, graphql_1.Args)('storecategoryId')),
@@ -67,14 +54,27 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", void 0)
-], StoreCategoryResolver.prototype, "modify_category", null);
+], StoreCategoryResolver.prototype, "modifyStorecategory", null);
 __decorate([
     (0, graphql_1.Mutation)(() => Delete_output_1.DeleteOutput || Boolean),
-    __param(0, (0, graphql_1.Args)('storecategoryName')),
+    __param(0, (0, graphql_1.Args)('storecategoryId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], StoreCategoryResolver.prototype, "delete_category", null);
+], StoreCategoryResolver.prototype, "deleteStorecategory", null);
+__decorate([
+    (0, graphql_1.Query)(() => Store_Category_entity_1.Store_Category),
+    __param(0, (0, graphql_1.Args)('storecategoryId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], StoreCategoryResolver.prototype, "fetchStorecategory", null);
+__decorate([
+    (0, graphql_1.Query)(() => Store_Category_entity_1.Store_Category),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], StoreCategoryResolver.prototype, "fetchStorecategoryAll", null);
 StoreCategoryResolver = __decorate([
     (0, graphql_1.Resolver)(),
     __metadata("design:paramtypes", [Store_Category_service_1.StoreCategoryService])

@@ -27,9 +27,9 @@ __decorate([
 ], Franchise.prototype, "franchise_name", void 0);
 __decorate([
     (0, typeorm_1.JoinTable)(),
-    (0, typeorm_1.ManyToMany)(() => Store_Category_entity_1.Store_Category, (store_category) => store_category.store_category_id),
+    (0, typeorm_1.ManyToMany)(() => Store_Category_entity_1.Store_Category, (storecategory) => storecategory.storecategory_id),
     __metadata("design:type", Array)
-], Franchise.prototype, "store_category_id", void 0);
+], Franchise.prototype, "storecategory_id", void 0);
 __decorate([
     (0, typeorm_1.DeleteDateColumn)(),
     __metadata("design:type", Date)

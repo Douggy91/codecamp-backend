@@ -3,6 +3,7 @@ import { Franchise } from 'src/apis/Store_Franchise/entities/Store_Franchise.ent
 import {
   Column,
   CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   ManyToOne,
   PrimaryGeneratedColumn,
@@ -28,8 +29,8 @@ export class Store {
   franchise_id: Franchise;
 
   @Column()
-  @Field(() => Int)
-  phone_num: number;
+  @Field(() => String)
+  phone_num: string;
 
   @Column()
   @Field(() => String)
@@ -45,4 +46,7 @@ export class Store {
 
   @CreateDateColumn()
   enrolled_date: Date;
+
+  @DeleteDateColumn()
+  isDeleted: Date;
 }

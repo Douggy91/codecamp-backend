@@ -7,7 +7,10 @@ export declare class FranchiseResolver {
     constructor(franchiseService: FranchiseService);
     fetchCategory(franchiseId: string): Promise<Franchise>;
     fetchCategoryAll(): Promise<Franchise[]>;
-    createFranchise(createfranchiseInput: CreateFranchiseInput): Promise<any>;
+    createFranchise(createfranchiseInput: CreateFranchiseInput): Promise<{
+        store_category_name: any[];
+        franchise_name: any;
+    } & Franchise>;
     modifyCategory(franchiseId: string, updatefranchiseInput: UpdateFranchiseInput): Promise<any>;
     deleteCategory(franchiseId: string): Promise<false | {
         message: string;

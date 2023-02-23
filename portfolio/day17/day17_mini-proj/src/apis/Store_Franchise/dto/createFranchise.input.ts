@@ -1,5 +1,4 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { StoreInput } from './StoreInput';
 
 @InputType()
 export class CreateFranchiseInput {
@@ -7,5 +6,5 @@ export class CreateFranchiseInput {
   franchise_name: string;
 
   @Field(() => [String])
-  store_category_id: string[];
+  storecategory_name: string[];
 }
