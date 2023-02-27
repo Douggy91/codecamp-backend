@@ -34,7 +34,7 @@ const DBDATABASE: string = process.env.DBDATABASE;
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: DBHOST,
-      port: 3306,
+      port: 3333,
       username: DBUSER,
       password: DBPASSWD,
       database: DBDATABASE,

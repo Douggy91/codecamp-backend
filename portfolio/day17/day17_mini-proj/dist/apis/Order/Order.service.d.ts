@@ -23,4 +23,9 @@ export declare class OrderService {
         orderId: any;
         updateOrderInput: any;
     }): Promise<any>;
+    delete({ orderId }: {
+        orderId: any;
+    }): Promise<{
+        message: string;
+    }>;
 }

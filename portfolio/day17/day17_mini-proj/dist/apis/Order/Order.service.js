@@ -57,6 +57,12 @@ let OrderService = class OrderService {
         const newOrder = Object.assign(Object.assign(Object.assign({}, modiOrder), { order_id: orderId }), updateOrderInput);
         return await this.orderRepository.save(newOrder);
     }
+    async delete({ orderId }) {
+        const result = await this.orderRepository.softDelete({ order_id: orderId });
+        return result.affected
+            ? { message: `${orderId}번 주문 삭제` }
+            : { message: `${orderId}번 주문이 없습니다.` };
+    }
 };
 OrderService = __decorate([
     (0, common_1.Injectable)(),

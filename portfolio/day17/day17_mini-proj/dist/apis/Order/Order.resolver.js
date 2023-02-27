@@ -16,6 +16,7 @@ exports.OrderResolver = void 0;
 const graphql_1 = require("@nestjs/graphql");
 const Delete_output_1 = require("../../commons/deleteMessage/Delete.output");
 const CreateOrder_input_1 = require("./dto/CreateOrder.input");
+const updateOrder_input_1 = require("./dto/updateOrder.input");
 const Order_entity_1 = require("./entities/Order.entity");
 const Order_service_1 = require("./Order.service");
 let OrderResolver = class OrderResolver {
@@ -24,6 +25,12 @@ let OrderResolver = class OrderResolver {
     }
     async createOrder(createOrderInput) {
         return await this.orderService.create({ createOrderInput });
+    }
+    async modiOrder(orderId, updateOrderInput) {
+        return await this.orderService.modify({ orderId, updateOrderInput });
+    }
+    async deleteOrder(orderId) {
+        return await this.orderService.delete({ orderId });
     }
     async fetchOrders() {
         return await this.orderService.findAll();
@@ -39,6 +46,21 @@ __decorate([
     __metadata("design:paramtypes", [CreateOrder_input_1.CreateOrderInput]),
     __metadata("design:returntype", Promise)
 ], OrderResolver.prototype, "createOrder", null);
+__decorate([
+    (0, graphql_1.Mutation)(() => Order_entity_1.Order),
+    __param(0, (0, graphql_1.Args)('orderId')),
+    __param(1, (0, graphql_1.Args)('updateOrderInput')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, updateOrder_input_1.UpdateOrderInput]),
+    __metadata("design:returntype", Promise)
+], OrderResolver.prototype, "modiOrder", null);
+__decorate([
+    (0, graphql_1.Mutation)(() => Delete_output_1.DeleteOutput),
+    __param(0, (0, graphql_1.Args)('orderId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], OrderResolver.prototype, "deleteOrder", null);
 __decorate([
     (0, graphql_1.Query)(() => Order_entity_1.Order),
     __metadata("design:type", Function),

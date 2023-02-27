@@ -11,10 +11,18 @@ export class CustomerService {
   ) {}
 
   async create({ createCustomerInput }) {
-    const result = await this.customerRepository.save({
-      ...createCustomerInput,
+    const { email, ...rest } = createCustomerInput;
+    const isValid = await this.customerRepository.findOne({
+      where: { email: email },
     });
-    return result;
+
+    return isValid
+      ? {
+          message: await this.customerRepository.save({
+            ...createCustomerInput,
+          }),
+        }
+      : { message: '이미 가입된 이메일입니다.' };
   }
 
   async findOne({ customerName }) {

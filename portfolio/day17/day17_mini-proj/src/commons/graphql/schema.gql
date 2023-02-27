@@ -82,10 +82,12 @@ type Query {
 }
 
 type Mutation {
-  createCustomer(createCustomerInput: CreateCustomerInput!): Customer!
+  createCustomer(createCustomerInput: CreateCustomerInput!): DeleteOutput!
   updateCustomer(customerId: String!, updateCustomerInput: UpdateCustomerInput!): Customer!
   deleteCustomer(customerId: String!): DeleteOutput!
   createOrder(createOrderInput: CreateOrderInput!): Order!
+  modiOrder(orderId: String!, updateOrderInput: UpdateOrderInput!): Order!
+  deleteOrder(orderId: String!): DeleteOutput!
   createFranchise(createfranchiseInput: CreateFranchiseInput!): Franchise!
   modifyCategory(franchiseId: String!, updatefranchiseInput: UpdateFranchiseInput!): Franchise!
   deleteCategory(franchiseId: String!): DeleteOutput!
@@ -125,6 +127,11 @@ input UpdateCustomerInput {
 input CreateOrderInput {
   customer_id: String!
   store_id: String!
+}
+
+input UpdateOrderInput {
+  customer_id: String
+  store_id: String
 }
 
 input CreateFranchiseInput {

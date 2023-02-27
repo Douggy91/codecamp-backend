@@ -40,7 +40,7 @@ let CustomerResolver = class CustomerResolver {
     }
 };
 __decorate([
-    (0, graphql_1.Mutation)(() => Customer_entity_1.Customer),
+    (0, graphql_1.Mutation)(() => Delete_output_1.DeleteOutput),
     __param(0, (0, graphql_1.Args)('createCustomerInput')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [CreateCustomer_input_1.CreateCustomerInput]),

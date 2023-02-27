@@ -5,7 +5,9 @@ export declare class CustomerService {
     constructor(customerRepository: Repository<Customer>);
     create({ createCustomerInput }: {
         createCustomerInput: any;
-    }): Promise<any>;
+    }): Promise<{
+        message: any;
+    }>;
     findOne({ customerName }: {
         customerName: any;
     }): Promise<Customer>;
