@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnprocessableEntityException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Product_Category } from '../Product_Category/entities/Product_Category.entity';
@@ -37,24 +37,19 @@ export class ProductService {
   }
 
   async modify({ productId, updateProductInput }) {
-    const isValid = await this.productRepository.findOne({
-      where: { product_id: productId },
+    return await this.productRepository.save({
+      product_id: productId,
+      ...updateProductInput,
     });
-    return isValid
-      ? await this.productRepository.save({
-          product_id: productId,
-          ...updateProductInput,
-        })
-      : { message: '수정할 대상이 존재하지 않습니다. ' };
   }
 
   async delete({ productId }) {
     const isDone = await this.productRepository.softDelete({
       product_id: productId,
     });
-    return isDone
-      ? { message: `${productId} 상품을 삭제했습니다.` }
-      : { message: `삭제할 대상이 없습니다.` };
+    return isDone.affected
+      ? { message: `${productId} 상품이 삭제 되었습니다.` }
+      : { message: `${productId} 상품이 없습니다.` };
   }
 
   async findOne({ productId }) {
@@ -68,5 +63,14 @@ export class ProductService {
     return this.productRepository.find({
       relations: ['product_category_id', 'product_id', 'store_id'],
     });
+  }
+
+  async isValid({ productId }) {
+    const target = await this.productRepository.findOne({
+      where: { product_id: productId },
+    });
+
+    if (!target)
+      throw new UnprocessableEntityException('해당 상품은 없는 상품입니다.');
   }
 }

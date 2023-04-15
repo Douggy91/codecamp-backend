@@ -13,6 +13,8 @@ export class CustomerResolver {
   async createCustomer(
     @Args('createCustomerInput') createCustomerInput: CreateCustomerInput,
   ) {
+    const { email, ...rest } = createCustomerInput;
+    await this.customerService.isRegistEmail({ email });
     return await this.customerService.create({ createCustomerInput });
   }
 
@@ -21,16 +23,19 @@ export class CustomerResolver {
     @Args('customerId') customerId: string,
     @Args('updateCustomerInput') updateCustomerInput: UpdateCustomerInput,
   ) {
+    await this.customerService.isRegistid({ customerId });
     return this.customerService.update({ customerId, updateCustomerInput });
   }
 
-  @Mutation(() => DeleteOutput || Boolean)
+  @Mutation(() => DeleteOutput)
   async deleteCustomer(@Args('customerId') customerId: string) {
+    await this.customerService.isRegistid({ customerId });
     return this.customerService.delete({ customerId });
   }
 
   @Query(() => Customer)
-  fetchCustomer(@Args('customerName') customerName: string) {
+  async fetchCustomer(@Args('customerName') customerName: string) {
+    await this.customerService.isRegistName({ customerName });
     return this.customerService.findOne({ customerName });
   }
 

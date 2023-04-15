@@ -10,17 +10,18 @@ export class ProductResolver {
   constructor(private readonly productService: ProductService) {}
 
   @Mutation(() => Product)
-  createProduct(
+  async createProduct(
     @Args('createProductInput') createProductInput: CreateProductInput,
   ) {
-    return this.productService.create({ createProductInput });
+    return await this.productService.create({ createProductInput });
   }
 
-  @Mutation(() => Product || DeleteOutput)
-  modifyProduct(
+  @Mutation(() => Product)
+  async modifyProduct(
     @Args('productId') productId: string,
     @Args('updateProductInput') updateProductInput: UpdateProductInput,
   ) {
+    await this.productService.isValid({ productId });
     return this.productService.modify({ productId, updateProductInput });
   }
 
@@ -30,7 +31,8 @@ export class ProductResolver {
   }
 
   @Query(() => Product)
-  fetchProduct(@Args('productId') productId: string) {
+  async fetchProduct(@Args('productId') productId: string) {
+    await this.productService.isValid({ productId });
     return this.productService.findOne({ productId });
   }
 

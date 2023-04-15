@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Customer } from './entities/Customer.entity';
@@ -11,18 +11,9 @@ export class CustomerService {
   ) {}
 
   async create({ createCustomerInput }) {
-    const { email, ...rest } = createCustomerInput;
-    const isValid = await this.customerRepository.findOne({
-      where: { email: email },
+    return await this.customerRepository.save({
+      ...createCustomerInput,
     });
-
-    return isValid
-      ? {
-          message: await this.customerRepository.save({
-            ...createCustomerInput,
-          }),
-        }
-      : { message: '이미 가입된 이메일입니다.' };
   }
 
   async findOne({ customerName }) {
@@ -50,13 +41,30 @@ export class CustomerService {
   }
 
   async delete({ customerId }) {
-    // await this.customerRepository.delete({ customer_id: customerId });
-    const result = await this.customerRepository.softDelete({
+    await this.customerRepository.softDelete({
       customer_id: customerId,
     });
-    return result.affected
-      ? { message: `${customerId}}님, 성공적으로 탈퇴하셨습니다.` }
-      : false;
+    return { message: `${customerId}}님, 성공적으로 탈퇴하셨습니다.` };
   }
-  // return `${customerId}}님, 성공적으로 탈퇴하셨습니다.`;
+
+  async isRegistEmail({ email }) {
+    const target = await this.customerRepository.findOne({
+      where: { email: email },
+    });
+    if (target) throw new ConflictException('이미 가입한 이메일입니다.');
+  }
+
+  async isRegistid({ customerId }) {
+    const target = await this.customerRepository.findOne({
+      where: { customer_id: customerId },
+    });
+    if (!target) throw new ConflictException('등록되지 않은 고객입니다.');
+  }
+
+  async isRegistName({ customerName }) {
+    const target = await this.customerRepository.findOne({
+      where: { customer_name: customerName },
+    });
+    if (!target) throw new ConflictException('등록되지 않은 고객입니다.');
+  }
 }
