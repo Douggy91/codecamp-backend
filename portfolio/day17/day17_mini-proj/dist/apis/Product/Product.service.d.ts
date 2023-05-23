@@ -21,4 +21,7 @@ export declare class ProductService {
         productId: any;
     }): Promise<Product>;
     findAll(): Promise<Product[]>;
+    isValid({ productId }: {
+        productId: any;
+    }): Promise<void>;
 }

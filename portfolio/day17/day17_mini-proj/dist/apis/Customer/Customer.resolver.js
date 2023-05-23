@@ -11,6 +11,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CustomerResolver = void 0;
 const graphql_1 = require("@nestjs/graphql");
@@ -24,15 +35,20 @@ let CustomerResolver = class CustomerResolver {
         this.customerService = customerService;
     }
     async createCustomer(createCustomerInput) {
+        const { email } = createCustomerInput, rest = __rest(createCustomerInput, ["email"]);
+        await this.customerService.isRegistEmail({ email });
         return await this.customerService.create({ createCustomerInput });
     }
     async updateCustomer(customerId, updateCustomerInput) {
+        await this.customerService.isRegistid({ customerId });
         return this.customerService.update({ customerId, updateCustomerInput });
     }
     async deleteCustomer(customerId) {
+        await this.customerService.isRegistid({ customerId });
         return this.customerService.delete({ customerId });
     }
-    fetchCustomer(customerName) {
+    async fetchCustomer(customerName) {
+        await this.customerService.isRegistName({ customerName });
         return this.customerService.findOne({ customerName });
     }
     fetchCustomerAll() {
@@ -40,7 +56,7 @@ let CustomerResolver = class CustomerResolver {
     }
 };
 __decorate([
-    (0, graphql_1.Mutation)(() => Delete_output_1.DeleteOutput),
+    (0, graphql_1.Mutation)(() => Customer_entity_1.Customer || Delete_output_1.DeleteOutput),
     __param(0, (0, graphql_1.Args)('createCustomerInput')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [CreateCustomer_input_1.CreateCustomerInput]),
@@ -55,7 +71,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CustomerResolver.prototype, "updateCustomer", null);
 __decorate([
-    (0, graphql_1.Mutation)(() => Delete_output_1.DeleteOutput || Boolean),
+    (0, graphql_1.Mutation)(() => Delete_output_1.DeleteOutput),
     __param(0, (0, graphql_1.Args)('customerId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -66,7 +82,7 @@ __decorate([
     __param(0, (0, graphql_1.Args)('customerName')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], CustomerResolver.prototype, "fetchCustomer", null);
 __decorate([
     (0, graphql_1.Query)(() => [Customer_entity_1.Customer]),

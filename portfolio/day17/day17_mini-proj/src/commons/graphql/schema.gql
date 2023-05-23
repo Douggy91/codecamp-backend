@@ -82,7 +82,7 @@ type Query {
 }
 
 type Mutation {
-  createCustomer(createCustomerInput: CreateCustomerInput!): DeleteOutput!
+  createCustomer(createCustomerInput: CreateCustomerInput!): Customer!
   updateCustomer(customerId: String!, updateCustomerInput: UpdateCustomerInput!): Customer!
   deleteCustomer(customerId: String!): DeleteOutput!
   createOrder(createOrderInput: CreateOrderInput!): Order!

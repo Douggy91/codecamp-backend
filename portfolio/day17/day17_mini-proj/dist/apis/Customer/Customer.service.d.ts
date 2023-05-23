@@ -5,9 +5,7 @@ export declare class CustomerService {
     constructor(customerRepository: Repository<Customer>);
     create({ createCustomerInput }: {
         createCustomerInput: any;
-    }): Promise<{
-        message: any;
-    }>;
+    }): Promise<any>;
     findOne({ customerName }: {
         customerName: any;
     }): Promise<Customer>;
@@ -18,7 +16,16 @@ export declare class CustomerService {
     }): Promise<any>;
     delete({ customerId }: {
         customerId: any;
-    }): Promise<false | {
+    }): Promise<{
         message: string;
     }>;
+    isRegistEmail({ email }: {
+        email: any;
+    }): Promise<void>;
+    isRegistid({ customerId }: {
+        customerId: any;
+    }): Promise<void>;
+    isRegistName({ customerName }: {
+        customerName: any;
+    }): Promise<void>;
 }

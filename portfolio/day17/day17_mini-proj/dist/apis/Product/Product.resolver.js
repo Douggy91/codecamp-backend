@@ -23,16 +23,18 @@ let ProductResolver = class ProductResolver {
     constructor(productService) {
         this.productService = productService;
     }
-    createProduct(createProductInput) {
-        return this.productService.create({ createProductInput });
+    async createProduct(createProductInput) {
+        return await this.productService.create({ createProductInput });
     }
-    modifyProduct(productId, updateProductInput) {
+    async modifyProduct(productId, updateProductInput) {
+        await this.productService.isValid({ productId });
         return this.productService.modify({ productId, updateProductInput });
     }
     deleteProduct(productId) {
         return this.productService.delete({ productId });
     }
-    fetchProduct(productId) {
+    async fetchProduct(productId) {
+        await this.productService.isValid({ productId });
         return this.productService.findOne({ productId });
     }
     fetchProductAll() {
@@ -44,15 +46,15 @@ __decorate([
     __param(0, (0, graphql_1.Args)('createProductInput')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [CreateProduct_input_1.CreateProductInput]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ProductResolver.prototype, "createProduct", null);
 __decorate([
-    (0, graphql_1.Mutation)(() => Product_entity_1.Product || Delete_output_1.DeleteOutput),
+    (0, graphql_1.Mutation)(() => Product_entity_1.Product),
     __param(0, (0, graphql_1.Args)('productId')),
     __param(1, (0, graphql_1.Args)('updateProductInput')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, UpdateProduct_input_1.UpdateProductInput]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ProductResolver.prototype, "modifyProduct", null);
 __decorate([
     (0, graphql_1.Mutation)(() => Delete_output_1.DeleteOutput),
@@ -66,7 +68,7 @@ __decorate([
     __param(0, (0, graphql_1.Args)('productId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ProductResolver.prototype, "fetchProduct", null);
 __decorate([
     (0, graphql_1.Query)(() => Product_entity_1.Product),

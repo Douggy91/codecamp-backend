@@ -9,7 +9,7 @@ import { Customer } from './entities/Customer.entity';
 export class CustomerResolver {
   constructor(private readonly customerService: CustomerService) {}
 
-  @Mutation(() => DeleteOutput)
+  @Mutation(() => Customer || DeleteOutput)
   async createCustomer(
     @Args('createCustomerInput') createCustomerInput: CreateCustomerInput,
   ) {

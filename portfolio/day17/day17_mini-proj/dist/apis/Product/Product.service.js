@@ -55,20 +55,15 @@ let ProductService = class ProductService {
         return result;
     }
     async modify({ productId, updateProductInput }) {
-        const isValid = await this.productRepository.findOne({
-            where: { product_id: productId },
-        });
-        return isValid
-            ? await this.productRepository.save(Object.assign({ product_id: productId }, updateProductInput))
-            : { message: '수정할 대상이 존재하지 않습니다. ' };
+        return await this.productRepository.save(Object.assign({ product_id: productId }, updateProductInput));
     }
     async delete({ productId }) {
         const isDone = await this.productRepository.softDelete({
             product_id: productId,
         });
-        return isDone
-            ? { message: `${productId} 상품을 삭제했습니다.` }
-            : { message: `삭제할 대상이 없습니다.` };
+        return isDone.affected
+            ? { message: `${productId} 상품이 삭제 되었습니다.` }
+            : { message: `${productId} 상품이 없습니다.` };
     }
     async findOne({ productId }) {
         return this.productRepository.findOne({
@@ -80,6 +75,13 @@ let ProductService = class ProductService {
         return this.productRepository.find({
             relations: ['product_category_id', 'product_id', 'store_id'],
         });
+    }
+    async isValid({ productId }) {
+        const target = await this.productRepository.findOne({
+            where: { product_id: productId },
+        });
+        if (!target)
+            throw new common_1.UnprocessableEntityException('해당 상품은 없는 상품입니다.');
     }
 };
 ProductService = __decorate([
