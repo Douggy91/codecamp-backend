@@ -5,11 +5,9 @@ import { Customer } from './entities/Customer.entity';
 export declare class CustomerResolver {
     private readonly customerService;
     constructor(customerService: CustomerService);
-    createCustomer(createCustomerInput: CreateCustomerInput): Promise<{
-        message: any;
-    }>;
+    createCustomer(createCustomerInput: CreateCustomerInput): Promise<any>;
     updateCustomer(customerId: string, updateCustomerInput: UpdateCustomerInput): Promise<any>;
-    deleteCustomer(customerId: string): Promise<false | {
+    deleteCustomer(customerId: string): Promise<{
         message: string;
     }>;
     fetchCustomer(customerName: string): Promise<Customer>;
